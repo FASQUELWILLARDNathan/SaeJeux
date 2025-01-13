@@ -1,0 +1,22 @@
+#### textes_fr.txt ####
+SAISIE_NOM:Quel est votre nom dans cette aventure ?
+BIENVENUE:Bienvenue, {nom}, dans ce monde dévasté.
+
+INTRO:Vous vous réveillez dans un monde apocalyptique, vous entendez des explosions, autour de vous ainsi que des bruits d’explosions. Vous vous demandez où est-ce que vous avez atterri et vous allez devoir survivre comme vous le pouvez.
+
+CHOIX1:Que souhaitez-vous faire en premier ?
+CHOIX1A:Explorer les ruines du bâtiment.
+CHOIX1B:Vous grimpez sur le toit pour une meilleure vision.
+CHOIX1C:Vous sortez du bâtiment pour explorer.
+RESULTAT1A:Vous trouvez des manuels techniques intacts, une ressource précieuse pour vos projets.
+RESULTAT1B:Vous récupérez plusieurs processeurs 8 bits fonctionnels, un trésor technologique dans ce monde.
+RESULTAT1C:Vous 
+
+CHOIX2:Vous tombez sur un robot endommagé. Que faites-vous ?
+CHOIX2A:Tenter de le réparer.
+CHOIX2B:L'ignorer et continuer votre chemin.
+RESULTAT2A:Le robot redémarre et devient un allié précieux dans votre quête.
+RESULTAT2B:Vous passez votre chemin, mais vous avez un sentiment d'opportunité manquée.
+
+
+FIN:Merci d'avoir participé à cette aventure. La survie repose sur des choix stratégiques. Bonne chance !

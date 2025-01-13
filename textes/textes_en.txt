@@ -1,0 +1,19 @@
+#### textes_en.txt ####
+SAISIE_NOM:What is your name in this adventure?
+BIENVENUE:Welcome, {nom}, to this devastated world.
+
+INTRO:Welcome to a post-apocalyptic future. You are a former computer science student, determined to restore some order through technology. Are you ready to begin this adventure?
+CHOIX1:What do you want to do first?
+CHOIX1A:Explore the ruins of an old library.
+CHOIX1B:Search for electronic components in a warehouse.
+RESULTAT1A:You find intact technical manuals, a valuable resource for your projects.
+RESULTAT1B:You recover several functional 8-bit processors, a technological treasure in this world.
+
+CHOIX2:You come across a damaged robot. What do you do?
+CHOIX2A:Try to repair it.
+CHOIX2B:Ignore it and move on.
+RESULTAT2A:The robot restarts and becomes a valuable ally in your quest.
+RESULTAT2B:You walk away, but feel a sense of missed opportunity.
+
+FIN:Thank you for participating in this adventure. Survival depends on strategic choices. Good luck!
+
