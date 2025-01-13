@@ -58,4 +58,8 @@ RESULT5:You explain to the soldiers that you are here for the evacuation. They l
 If CHOICE5B_B:
 RESULT6:The soldiers realize you are not on the evacuation list. They execute you on the rooftop.
 
+<<<<<<< Updated upstream
 END:Thank you for playing this adventure. We hope you had fun!
+=======
+END:Thank you for playing this adventure. We hope you had fun!
+>>>>>>> Stashed changes
