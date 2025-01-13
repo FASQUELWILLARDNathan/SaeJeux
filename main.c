@@ -69,13 +69,16 @@ void choixAventure(const char *langFile, const char *name) {
     if (choix == 'a') {
         loadText(langFile, "RESULTAT1A", text);
         printf("%s\n", text);
-    } else if (choix == 'b') {
+    } 
+    else if (choix == 'b') {
         loadText(langFile, "RESULTAT1B", text);
         printf("%s\n", text);
-    } else if (choix == 'c') {
+    } 
+    else if (choix == 'c') {
         loadText(langFile, "RESULTAT1C", text);
         printf("%s\n", text);
-    } else {
+    } 
+    else {
         printf("Choix invalide. Fin de l'aventure.\n");
     }
 }

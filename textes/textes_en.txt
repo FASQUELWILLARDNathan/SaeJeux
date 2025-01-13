@@ -1,3 +1,4 @@
+#### textes_en.txt ####
 INTRO:You wake up in a world that feels strange. You hear birds singing and see a lot of plants everywhere. You ask yourself where you are, and now you need to survive as best as you can.
 
 CHOICE1:What do you want to do first?
