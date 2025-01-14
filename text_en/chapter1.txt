@@ -1,7 +1,4 @@
-CHOIX1:Que souhaitez-vous faire en premier ?
-CHOIX1A:Explorer les ruines du bâtiment.
-CHOIX1B:Grimper sur le toit pour une meilleure vision. (Endurance requise : 3)
-CHOIX1C:Sortir du bâtiment pour explorer.
-RESULTAT1A:Vous trouvez un cutter, de la corde, une lampe torche et une carte de la ville annotée avec des raccourcis menant à des chemins souterrains.
-RESULTAT1B:Vous voyez une énorme lumière sur l’un des rares bâtiments restants avec des hélicoptères qui évacuent la zone. Votre objectif est donc de rejoindre cet endroit.
-RESULTAT1C:Vous voyez une personne blessée. Elle vous donne un plan et murmure : "Suis ce chemin, c’est notre seule chance..." avant de s’effondrer au sol.
+--- Chapitre 1 ---
+A. Explorer les ruines du bâtiment.
+B. Grimper sur le toit pour une meilleure vision. (Endurance requise : 3)
+C. Sortir du bâtiment pour explorer.

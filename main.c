@@ -16,20 +16,27 @@ typedef struct
     char chapter1Choice; // Le choix effectué au chapitre 1
 } Player;
 
-// Fonction pour lire le contenu d'un fichier texte
-void readTextFile(const char *filename, char *buffer, size_t bufferSize)
+// Lire les lignes d'un intervalle donné (de `start_line` à `end_line`) d'un fichier ouvert
+void lire_intervalle_lignes(FILE *file, int start_line, int end_line)
 {
-    FILE *file = fopen(filename, "r");
-    if (file == NULL)
+    char line[MAX_TEXT_LENGTH];
+    int current_line = 1;
+
+    // Revenir au début du fichier
+    rewind(file);
+
+    while (fgets(line, sizeof(line), file))
     {
-        printf("Erreur: Impossible de lire le fichier %s.\n", filename);
-        return;
+        if (current_line >= start_line && current_line <= end_line)
+        {
+            printf("%s", line);
+        }
+        current_line++;
+        if (current_line > end_line)
+        {
+            break;
+        }
     }
-
-    // Lire le contenu du fichier
-    fgets(buffer, bufferSize, file);
-
-    fclose(file);
 }
 
 void setLanguage(Player *player)
@@ -214,28 +221,39 @@ void displayIntroduction(const Player *player)
 
 void displayChapter1(Player *player)
 {
-    char filename[100];
-    char chapterText[MAX_TEXT_LENGTH];
+    char choice;
+    int valid = 0;
 
-    // Déterminer le fichier à lire en fonction de la langue
     if (strcmp(player->language, "fr") == 0)
     {
-        strcpy(filename, "text_fr/chapitre1.txt");
+        FILE *file = fopen("text_fr/chapitre1.txt", "r");
+        if (file == NULL)
+        {
+            printf("Erreur: Impossible de lire le fichier.\n");
+        }
+
+        int start = 1, end = 4; // Lire de la ligne 5 à la ligne 10
+        lire_intervalle_lignes(file, start, end);
+
+        fclose(file);
     }
     else
     {
-        strcpy(filename, "text_en/chapter1.txt");
+        FILE *file = fopen("text_en/chapter1.txt", "r");
+        if (file == NULL)
+        {
+            printf("Erreur: Impossible de lire le fichier %s.\n", "text_en/chapter1.txt");
+            return;
+        }
+
+        char line[MAX_TEXT_LENGTH];
+        while (fgets(line, sizeof(line), file))
+        {
+            printf("%s", line); // Afficher chaque ligne du chapitre
+        }
+
+        fclose(file);
     }
-
-    // Lire le texte du fichier
-    readTextFile(filename, chapterText, sizeof(chapterText));
-
-    // Afficher le texte du chapitre 1
-    printf("%s\n", chapterText);
-
-    // Maintenant, demander le choix du joueur comme d'habitude
-    char choice;
-    int valid = 0;
 
     do
     {
@@ -250,24 +268,56 @@ void displayChapter1(Player *player)
             player->chapter1Choice = 'A';
             if (strcmp(player->language, "fr") == 0)
             {
-                printf("\nRésultat : Vous trouvez un cutter, de la corde, une lampe torche et une carte de la ville annotée avec des raccourcis menant à des chemins souterrains.\n");
+                FILE *file = fopen("text_fr/chapitre1.txt", "r");
+                if (file == NULL)
+                {
+                    printf("Erreur: Impossible de lire le fichier.\n");
+                }
+
+                int start = 5, end = 5; // Lire de la ligne 5 à la ligne 10
+                lire_intervalle_lignes(file, start, end);
+
+                fclose(file);
             }
             else
             {
-                printf("\nResult: You find a cutter, rope, a flashlight, and a city map annotated with shortcuts leading to underground paths.\n");
+                FILE *file = fopen("text_en/chapter1.txt", "r");
+                if (file == NULL)
+                {
+                    printf("Erreur: Impossible de lire le fichier.\n");
+                }
+
+                int start = 5, end = 5; // Lire de la ligne 5 à la ligne 10
+                lire_intervalle_lignes(file, start, end);
+
+                fclose(file);
             }
         }
         else if (choice == 'B')
         {
-            valid = 1;
-            player->chapter1Choice = 'B';
-            if (strcmp(player->language, "fr") == 0)
+            if (player->endurance >= 3)
             {
-                printf("\nRésultat : Vous voyez une énorme lumière sur l’un des rares bâtiments restants avec des hélicoptères qui évacuent la zone. Votre objectif est donc de rejoindre cet endroit.\n");
+                valid = 1;
+                player->chapter1Choice = 'B';
+                if (strcmp(player->language, "fr") == 0)
+                {
+                    printf("\nRésultat : Vous voyez une énorme lumière sur l’un des rares bâtiments restants avec des hélicoptères qui évacuent la zone. Votre objectif est donc de rejoindre cet endroit.\n");
+                }
+                else
+                {
+                    printf("\nResult: You see a massive light on one of the few remaining buildings with helicopters evacuating the area. Your goal is to reach this place.\n");
+                }
             }
             else
             {
-                printf("\nResult: You see a massive light on one of the few remaining buildings with helicopters evacuating the area. Your goal is to reach this place.\n");
+                if (strcmp(player->language, "fr") == 0)
+                {
+                    printf("Vous n’avez pas assez d’endurance pour grimper sur le toit.\n");
+                }
+                else
+                {
+                    printf("You don't have enough endurance to climb to the roof.\n");
+                }
             }
         }
         else if (choice == 'C')
