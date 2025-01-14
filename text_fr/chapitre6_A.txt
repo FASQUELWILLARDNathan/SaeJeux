@@ -1,5 +1,6 @@
-CHOIX6A:Vous arrivez sur le toit du bâtiment en étant armé et apercevez 4 soldats armés.
-CHOIX6AA:Vous tirez sur les soldats, mais ils sont plus nombreux que vous.
-CHOIX6AB:Vous laissez tomber votre arme.
-RESULTAT6AA:Vous réussissez à éliminer les soldats et prenez l'hélicoptère pour évacuer.
-RESULTAT6AB:Les soldats vous neutralisent et vous jettent du toit. Vous êtes mort.
+--- Chapitre 6 ---
+Vous arrivez sur le toit du bâtiment en étant armé et apercevez 4 soldats armés.
+A:Vous tirez sur les soldats, mais ils sont plus nombreux que vous.
+B:Vous laissez tomber votre arme.
+Vous réussissez à éliminer les soldats et prenez l'hélicoptère pour évacuer.
+Les soldats vous neutralisent et vous jettent du toit. Vous êtes mort.
