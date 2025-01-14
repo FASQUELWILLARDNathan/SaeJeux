@@ -1,114 +1,216 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-#define MAX_TEXT 1024
 #define MAX_NAME 50
+#define MAX_INTRO_LENGTH 256
 
-void loadText(const char *filename, const char *key, char *output) {
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        printf("Erreur : Impossible de charger le fichier %s\n", filename);
-        exit(1);
-    }
-
-    char line[MAX_TEXT];
-    while (fgets(line, sizeof(line), file)) {
-        if (strncmp(line, key, strlen(key)) == 0) {
-            strcpy(output, line + strlen(key) + 1); // Skip key and delimiter
-            output[strcspn(output, "\n")] = 0;   // Remove newline
-            fclose(file);
-            return;
-        }
-    }
-
-    printf("Erreur : Texte pour '%s' introuvable dans %s\n", key, filename);
-    fclose(file);
-    exit(1);
-}
-
-void personalizeText(char *text, const char *name) {
-    char buffer[MAX_TEXT];
-    char *placeholder = strstr(text, "{nom}");
-    if (placeholder) {
-        size_t prefixLen = placeholder - text;
-        snprintf(buffer, sizeof(buffer), "%.*s%s%s", (int)prefixLen, text, name, placeholder + 5); // Skip "{nom}"
-        strcpy(text, buffer);
-    }
-}
-
-void choixAventure(const char *langFile, const char *name) {
-    char text[MAX_TEXT];
-    char choix;
-
-    // Message de bienvenue personnalisé
-    loadText(langFile, "BIENVENUE", text);
-    personalizeText(text, name);
-    printf("%s\n", text);
-
-    // Introduction
-    loadText(langFile, "INTRO", text);
-    printf("%s\n", text);
-
-    // Premier choix
-    loadText(langFile, "CHOIX1", text);
-    printf("%s\n", text);
-    printf("a) ");
-    loadText(langFile, "CHOIX1A", text);
-    printf("%s\n", text);
-    printf("b) ");
-    loadText(langFile, "CHOIX1B", text);
-    printf("%s\n", text);
-    printf("C) ");
-    loadText(langFile, "CHOIX1C", text);
-    printf("%s\n", text);
-
-    printf("\nVotre choix : ");
-    scanf(" %c", &choix);
-
-    if (choix == 'a') {
-        loadText(langFile, "RESULTAT1A", text);
-        printf("%s\n", text);
-    } 
-    else if (choix == 'b') {
-        loadText(langFile, "RESULTAT1B", text);
-        printf("%s\n", text);
-    } 
-    else if (choix == 'c') {
-        loadText(langFile, "RESULTAT1C", text);
-        printf("%s\n", text);
-    } 
-    else {
-        printf("Choix invalide. Fin de l'aventure.\n");
-    }
-}
-
-int main() {
-    char lang[10];
-    char langFile[50];
+typedef struct
+{
     char name[MAX_NAME];
+    int force;
+    int intelligence;
+    int endurance;
+    char language[3]; // "fr" ou "en"
+} Player;
 
-    printf("Choisissez une langue (fr/en) : ");
-    scanf("%s", lang);
+void setLanguage(Player *player)
+{
+    int valid = 0;
 
-    if (strcmp(lang, "fr") == 0) {
-        strcpy(langFile, "textes_fr.txt");
-    } else if (strcmp(lang, "en") == 0) {
-        strcpy(langFile, "textes_en.txt");
-    } else {
-        printf("Langue non supportée.\n");
-        return 1;
+    do
+    {
+        printf("Choisissez une langue (fr/en) : ");
+        scanf("%2s", player->language);
+
+        if (strcmp(player->language, "fr") == 0 || strcmp(player->language, "en") == 0)
+        {
+            valid = 1;
+        }
+        else
+        {
+            printf("Langue non supportée. Veuillez réessayer.\n");
+        }
+    } while (!valid);
+}
+
+void setPlayerName(Player *player)
+{
+    if (strcmp(player->language, "fr") == 0)
+    {
+        printf("Entrez votre prénom : ");
+    }
+    else
+    {
+        printf("Enter your name: ");
     }
 
-    // Saisie du nom du joueur
-    char text[MAX_TEXT];
-    loadText(langFile, "SAISIE_NOM", text);
-    printf("%s\n", text);
-    getchar(); // Clear the newline left by the previous input
-    fgets(name, MAX_NAME, stdin); // Read the name, including spaces
-    name[strcspn(name, "\n")] = 0; // Remove trailing newline
+    getchar(); // Nettoie le tampon pour éviter les problèmes avec fgets
+    fgets(player->name, MAX_NAME, stdin);
+    player->name[strcspn(player->name, "\n")] = '\0'; // Supprime le saut de ligne
+}
 
-    choixAventure(langFile, name);
+void assignSkillPoints(Player *player)
+{
+    int totalPoints = 10;
+    int points;
+
+    if (strcmp(player->language, "fr") == 0)
+    {
+        printf("\nVous avez %d points de compétence à répartir entre Force, Intelligence et Endurance.\n", totalPoints);
+    }
+    else
+    {
+        printf("\nYou have %d skill points to distribute among Strength, Intelligence, and Endurance.\n", totalPoints);
+    }
+
+    // Force
+    do
+    {
+        if (strcmp(player->language, "fr") == 0)
+        {
+            printf("Combien de points voulez-vous attribuer à Force ? ");
+        }
+        else
+        {
+            printf("How many points do you want to assign to Strength? ");
+        }
+        scanf("%d", &points);
+        if (points < 0 || points > totalPoints)
+        {
+            if (strcmp(player->language, "fr") == 0)
+            {
+                printf("Valeur invalide. Vous avez %d points restants.\n", totalPoints);
+            }
+            else
+            {
+                printf("Invalid value. You have %d points remaining.\n", totalPoints);
+            }
+        }
+        else
+        {
+            player->force = points;
+            totalPoints -= points;
+            break;
+        }
+    } while (1);
+
+    // Intelligence
+    do
+    {
+        if (strcmp(player->language, "fr") == 0)
+        {
+            printf("Combien de points voulez-vous attribuer à Intelligence ? ");
+        }
+        else
+        {
+            printf("How many points do you want to assign to Intelligence? ");
+        }
+        scanf("%d", &points);
+        if (points < 0 || points > totalPoints)
+        {
+            if (strcmp(player->language, "fr") == 0)
+            {
+                printf("Valeur invalide. Vous avez %d points restants.\n", totalPoints);
+            }
+            else
+            {
+                printf("Invalid value. You have %d points remaining.\n", totalPoints);
+            }
+        }
+        else
+        {
+            player->intelligence = points;
+            totalPoints -= points;
+            break;
+        }
+    } while (1);
+
+    // Endurance
+    player->endurance = totalPoints;
+    if (strcmp(player->language, "fr") == 0)
+    {
+        printf("Les %d points restants sont attribués à Endurance.\n", totalPoints);
+    }
+    else
+    {
+        printf("The remaining %d points are assigned to Endurance.\n", totalPoints);
+    }
+}
+
+void displayPlayerInfo(const Player *player)
+{
+    if (strcmp(player->language, "fr") == 0)
+    {
+        printf("\n--- Profil du joueur ---\n");
+        printf("Prénom      : %s\n", player->name);
+        printf("Force       : %d\n", player->force);
+        printf("Intelligence: %d\n", player->intelligence);
+        printf("Endurance   : %d\n", player->endurance);
+        printf("------------------------\n");
+    }
+    else
+    {
+        printf("\n--- Player Profile ---\n");
+        printf("Name        : %s\n", player->name);
+        printf("Strength    : %d\n", player->force);
+        printf("Intelligence: %d\n", player->intelligence);
+        printf("Endurance   : %d\n", player->endurance);
+        printf("------------------------\n");
+    }
+}
+
+void displayIntroduction(const Player *player)
+{
+    char introText[MAX_INTRO_LENGTH];
+    FILE *file;
+    char filename[50];
+
+    // Sélectionner le fichier en fonction de la langue
+    if (strcmp(player->language, "fr") == 0)
+    {
+        strcpy(filename, "text_fr/introduction.txt");
+    }
+    else
+    {
+        strcpy(filename, "en/intro.txt");
+    }
+
+    // Ouvrir le fichier
+    file = fopen(filename, "r");
+    if (file == NULL)
+    {
+        printf("Erreur: Impossible de lire le fichier d'introduction.\n");
+        return;
+    }
+
+    // Lire le contenu du fichier
+    fgets(introText, sizeof(introText), file);
+    fclose(file);
+
+    // Afficher l'introduction
+    printf("\n--- Introduction ---\n");
+    printf("%s\n", introText);
+    printf("---------------------\n");
+}
+
+int main()
+{
+    Player player = {"", 0, 0, 0, ""};
+
+    // Choix de la langue
+    setLanguage(&player);
+
+    // Afficher l'introduction
+    displayIntroduction(&player);
+
+    // Saisie du prénom
+    setPlayerName(&player);
+
+    // Attribution des points de compétence
+    assignSkillPoints(&player);
+
+    // Affichage du profil du joueur
+    displayPlayerInfo(&player);
 
     return 0;
 }

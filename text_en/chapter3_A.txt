@@ -1,0 +1,4 @@
+CHOIX3A:Vous entendez des bruits inquiétants derrière vous. Une créature étrange semble vous suivre.
+CHOIX3AA:Courir pour échapper à la créature. (Endurance requise : 5)
+CHOIX3AB:Tendre un piège avec votre corde et votre cutter. (Armement requis : 5)
+CHOIX3AC:Trouver un endroit pour vous cacher et observer. (Intelligence requise : 4)
