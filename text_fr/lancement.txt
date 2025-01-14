@@ -1,2 +1,2 @@
-SAISIE_NOM:Quel est votre nom dans cette aventure ?
-BIENVENUE:Bienvenue, {nom}
+Quel est votre nom dans cette aventure ?
+Bienvenue {nom} !
