@@ -63,16 +63,46 @@ void setPlayerName(Player *player)
 {
     if (strcmp(player->language, "fr") == 0)
     {
-        printf("Entrez votre prénom : ");
+        FILE *file = fopen("text_fr/lancement.txt", "r");
+        if (file == NULL)
+        {
+            printf("Erreur: Impossible de lire le fichier.\n");
+        }
+
+        int start = 1, end = 1;
+        lire_intervalle_lignes(file, start, end);
+
+        getchar(); // Nettoie le tampon pour éviter les problèmes avec fgets
+        scanf("%s", player->name);
+
+        start = 2;
+        end = 2;
+        lire_intervalle_lignes(file, start, end);
+        printf("%s", player->name);
+
+        fclose(file);
     }
     else
     {
-        printf("Enter your name: ");
-    }
+        FILE *file = fopen("text_en/launch.txt", "r");
+        if (file == NULL)
+        {
+            printf("Erreur: Impossible de lire le fichier.\n");
+        }
 
-    getchar(); // Nettoie le tampon pour éviter les problèmes avec fgets
-    fgets(player->name, MAX_NAME, stdin);
-    player->name[strcspn(player->name, "\n")] = '\0'; // Supprime le saut de ligne
+        int start = 1, end = 1;
+        lire_intervalle_lignes(file, start, end);
+
+        getchar(); // Nettoie le tampon pour éviter les problèmes avec fgets
+        scanf("%s", player->name);
+
+        start = 2;
+        end = 2;
+        lire_intervalle_lignes(file, start, end);
+        printf(" %s", player->name);
+
+        fclose(file);
+    }
 }
 
 void assignSkillPoints(Player *player)
@@ -232,7 +262,7 @@ void displayChapter1(Player *player)
             printf("Erreur: Impossible de lire le fichier.\n");
         }
 
-        int start = 1, end = 4; // Lire de la ligne 5 à la ligne 10
+        int start = 1, end = 5; // Lire de la ligne 1 à la ligne 5
         lire_intervalle_lignes(file, start, end);
 
         fclose(file);
@@ -242,15 +272,11 @@ void displayChapter1(Player *player)
         FILE *file = fopen("text_en/chapter1.txt", "r");
         if (file == NULL)
         {
-            printf("Erreur: Impossible de lire le fichier %s.\n", "text_en/chapter1.txt");
-            return;
+            printf("Error: Impossible to read this file.\n");
         }
 
-        char line[MAX_TEXT_LENGTH];
-        while (fgets(line, sizeof(line), file))
-        {
-            printf("%s", line); // Afficher chaque ligne du chapitre
-        }
+        int start = 1, end = 5; // Lire de la ligne 1 à la ligne 5
+        lire_intervalle_lignes(file, start, end);
 
         fclose(file);
     }
@@ -274,7 +300,7 @@ void displayChapter1(Player *player)
                     printf("Erreur: Impossible de lire le fichier.\n");
                 }
 
-                int start = 5, end = 5; // Lire de la ligne 5 à la ligne 10
+                int start = 6, end = 6; // Lire de la ligne 5 à la ligne 10
                 lire_intervalle_lignes(file, start, end);
 
                 fclose(file);
@@ -284,10 +310,10 @@ void displayChapter1(Player *player)
                 FILE *file = fopen("text_en/chapter1.txt", "r");
                 if (file == NULL)
                 {
-                    printf("Erreur: Impossible de lire le fichier.\n");
+                    printf("Error: Impossible to read this file.\n");
                 }
 
-                int start = 5, end = 5; // Lire de la ligne 5 à la ligne 10
+                int start = 6, end = 6;
                 lire_intervalle_lignes(file, start, end);
 
                 fclose(file);
@@ -301,22 +327,40 @@ void displayChapter1(Player *player)
                 player->chapter1Choice = 'B';
                 if (strcmp(player->language, "fr") == 0)
                 {
-                    printf("\nRésultat : Vous voyez une énorme lumière sur l’un des rares bâtiments restants avec des hélicoptères qui évacuent la zone. Votre objectif est donc de rejoindre cet endroit.\n");
+                    FILE *file = fopen("text_fr/chapitre1.txt", "r");
+                    if (file == NULL)
+                    {
+                        printf("Erreur: Impossible de lire le fichier.\n");
+                    }
+
+                    int start = 7, end = 7;
+                    lire_intervalle_lignes(file, start, end);
+
+                    fclose(file);
                 }
                 else
                 {
-                    printf("\nResult: You see a massive light on one of the few remaining buildings with helicopters evacuating the area. Your goal is to reach this place.\n");
+                    FILE *file = fopen("text_en/chapter1.txt", "r");
+                    if (file == NULL)
+                    {
+                        printf("Error: Impossible to read this file.\n");
+                    }
+
+                    int start = 7, end = 7;
+                    lire_intervalle_lignes(file, start, end);
+
+                    fclose(file);
                 }
             }
             else
             {
                 if (strcmp(player->language, "fr") == 0)
                 {
-                    printf("Vous n’avez pas assez d’endurance pour grimper sur le toit.\n");
+                    printf("Vous n'avez pas assez d'endurance");
                 }
                 else
                 {
-                    printf("You don't have enough endurance to climb to the roof.\n");
+                    printf("You don't have enough endurance");
                 }
             }
         }
@@ -326,11 +370,29 @@ void displayChapter1(Player *player)
             player->chapter1Choice = 'C';
             if (strcmp(player->language, "fr") == 0)
             {
-                printf("\nRésultat : Vous voyez une personne blessée. Elle vous donne un plan et murmure : \"Suis ce chemin, c’est notre seule chance...\" avant de s’effondrer au sol.\n");
+                FILE *file = fopen("text_fr/chapitre1.txt", "r");
+                if (file == NULL)
+                {
+                    printf("Erreur: Impossible de lire le fichier.\n");
+                }
+
+                int start = 8, end = 8;
+                lire_intervalle_lignes(file, start, end);
+
+                fclose(file);
             }
             else
             {
-                printf("\nResult: You see an injured person. They give you a map and whisper, \"Follow this path, it's our only chance...\" before collapsing to the ground.\n");
+                FILE *file = fopen("text_en/chapter1.txt", "r");
+                if (file == NULL)
+                {
+                    printf("Erreur: Impossible de lire le fichier.\n");
+                }
+
+                int start = 8, end = 8;
+                lire_intervalle_lignes(file, start, end);
+
+                fclose(file);
             }
         }
         else

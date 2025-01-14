@@ -1,2 +1,2 @@
 Quel est votre nom dans cette aventure ?
-Bienvenue {nom} !
+Bienvenue

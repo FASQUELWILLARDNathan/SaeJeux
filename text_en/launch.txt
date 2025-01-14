@@ -1,2 +1,2 @@
 What's your nickname for this adventure
-Welcome {nom} !
+Welcome
