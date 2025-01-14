@@ -1,3 +1,4 @@
-CHOIX5B:Vous voyez un soldat armé.
-CHOIX5BA:Vous dites que vous êtes là pour l’évacuation.
-CHOIX5BB:Vous demandez si vous pouvez évacuer.
+--- Chapitre 5 ---
+Vous voyez un soldat armé.
+A. Vous dites que vous êtes là pour l’évacuation.
+B. Vous demandez si vous pouvez évacuer.

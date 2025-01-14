@@ -1,4 +1,5 @@
 --- Chapitre 1 ---
+Que voulez vous faire maintenant ?
 A. Explorer les ruines du bâtiment.
 B. Grimper sur le toit pour une meilleure vision. (Endurance requise : 3)
 C. Sortir du bâtiment pour explorer.

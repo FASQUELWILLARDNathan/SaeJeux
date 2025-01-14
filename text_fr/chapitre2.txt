@@ -1,7 +1,10 @@
-CHOIX2:Après votre décision, que souhaitez-vous faire par la suite ?
-CHOIX2AA:Suivre le passage des sous-sols découvert plus tôt. (Intelligence requise : 4)
-CHOIX2AB:Remonter et sortir par l’entrée principale pour rejoindre les rues.
-CHOIX2BA:Descendre pour trouver un chemin sûr vers le bâtiment avec les hélicoptères. (Intelligence requise : 2)
-CHOIX2BB:Utiliser la corde pour descendre directement dans une zone moins exposée. (Force requise : 3)
-CHOIX2CA:Suivre le plan donné par la personne blessée. (Intelligence requise : 3)
-CHOIX2CB:Fouiller les environs à la recherche de provisions.
+--- Chapitre 2 ---
+Après votre décision, que souhaitez-vous faire par la suite ?
+A:Suivre le passage des sous-sols découvert plus tôt. (Intelligence requise : 4)
+B:Remonter et sortir par l’entrée principale pour rejoindre les rues.
+
+A:Descendre pour trouver un chemin sûr vers le bâtiment avec les hélicoptères. (Intelligence requise : 2)
+B:Utiliser la corde pour descendre directement dans une zone moins exposée. (Force requise : 3)
+
+A:Suivre le plan donné par la personne blessée. (Intelligence requise : 3)
+B:Fouiller les environs à la recherche de provisions.

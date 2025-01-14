@@ -1,3 +1,4 @@
-CHOIX5A:Vous voyez un soldat armé.
-CHOIX5AA:Vous l’attaquez, l'assommez et volez son arme. (Force requise : 4)
-CHOIX5AB:Vous le contournez et arrivez vers le toit du bâtiment.
+--- Chapitre 5 ---
+Vous voyez un soldat armé.
+A. Vous l’attaquez, l'assommez et volez son arme. (Force requise : 4)
+B. Vous le contournez et arrivez vers le toit du bâtiment.

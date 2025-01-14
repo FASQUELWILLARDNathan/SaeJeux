@@ -1,4 +1,5 @@
-CHOIX3B:Un drone armé vous repère et commence à tirer.
-CHOIX3BA:Trouver rapidement un abri. (Endurance requise : 3)
-CHOIX3BB:Lancer un objet pour distraire le drone. (Force requise : 2)
-CHOIX3BC:Utiliser une batte trouvée au sol pour abattre le drone. (Armement requis : 4)
+--- Chapitre 3 ---
+Un drone armé vous repère et commence à tirer.
+A. Trouver rapidement un abri. (Endurance requise : 3)
+B. Lancer un objet pour distraire le drone. (Force requise : 2)
+C. Utiliser une batte trouvée au sol pour abattre le drone. (Armement requis : 4)
