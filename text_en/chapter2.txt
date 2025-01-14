@@ -1,7 +1,10 @@
-CHOIX2:Après votre décision, que souhaitez-vous faire par la suite ?
-CHOIX2AA:Suivre le passage des sous-sols découvert plus tôt. (Intelligence requise : 4)
-CHOIX2AB:Remonter et sortir par l’entrée principale pour rejoindre les rues.
-CHOIX2BA:Descendre pour trouver un chemin sûr vers le bâtiment avec les hélicoptères. (Intelligence requise : 2)
-CHOIX2BB:Utiliser la corde pour descendre directement dans une zone moins exposée. (Force requise : 3)
-CHOIX2CA:Suivre le plan donné par la personne blessée. (Intelligence requise : 3)
-CHOIX2CB:Fouiller les environs à la recherche de provisions.
+--- Chapter 2 ---
+After deciding, what do you do next?
+A. Use the underground path you found earlier. (Intelligence required: 4)
+B. Go back and leave through the main entrance to reach the streets.
+
+A. Go down to find a safe way to the building with the helicopters. (Intelligence required: 2)
+B. Use the rope to climb down to a safer area. (Strength required: 3)
+
+A. Follow the map the injured person gave you. (Intelligence required: 3)
+B. Search the area for more supplies.

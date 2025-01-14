@@ -1,4 +1,8 @@
---- Chapitre 1 ---
-A. Explorer les ruines du bâtiment.
-B. Grimper sur le toit pour une meilleure vision. (Endurance requise : 3)
-C. Sortir du bâtiment pour explorer.
+--- Chapter 1 ---
+What do you want to do now?
+A. Look around the ruins of the building.
+B. Climb to the roof to get a better view. (Endurance required: 3)
+C. Leave the building and explore outside.
+You find a small knife, a rope, a flashlight, and a map of the city. The map has notes about secret underground paths.
+You see a bright light coming from one of the few buildings still standing. There are helicopters evacuating people. Your goal is to get there.
+You see an injured person. They hand you a map and whisper, "Follow this path... it’s our only chance," before collapsing on the ground.

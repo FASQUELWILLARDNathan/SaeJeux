@@ -1,3 +1,4 @@
-CHOIX5B:Vous voyez un soldat armé.
-CHOIX5BA:Vous dites que vous êtes là pour l’évacuation.
-CHOIX5BB:Vous demandez si vous pouvez évacuer.
+--- Chapter 5 ---
+You see a soldier holding a gun.
+A. Tell them you’re here to be evacuated.
+B. Ask if you can join the evacuation.

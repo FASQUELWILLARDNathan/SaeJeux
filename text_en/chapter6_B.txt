@@ -1,2 +1,2 @@
-RESULTAT5:Vous arrivez et un soldat vous demande ce que vous faites ici. Vous dites que vous êtes là pour l’évacuation, et ils vous prennent dans l’hélicoptère.
-RESULTAT6:En demandant si vous pouvez évacuer, ils réalisent que vous n’êtes pas sur la fiche d’évacuation et vous exécutent sur le toit.
+You explain to the soldiers that you are here for the evacuation. They let you get into the helicopter.
+The soldiers realize you are not on the evacuation list. They execute you on the rooftop.

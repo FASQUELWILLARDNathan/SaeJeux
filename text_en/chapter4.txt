@@ -1,3 +1,4 @@
-CHOIX4:Vous arrivez près du bâtiment avec les hélicoptères.
-CHOIX4A:Escalader un mur pour entrer discrètement. (Force requise : 4)
-CHOIX4B:Se faire passer pour un blessé et demander de l’aide à des soldats. (Intelligence requise : 2)
+--- Chapter 4 ---
+You finally reach the building with the helicopters.
+A. Climb a wall to infiltrate. (Strength required: 4)
+B. Pretend to be injured and ask the soldiers for help. (Intelligence required: 2)

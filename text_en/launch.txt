@@ -1,2 +1,2 @@
-SAISIE_NOM:Quel est votre nom dans cette aventure ?
-BIENVENUE:Bienvenue, {nom}
+What's your nickname for this adventure
+Welcome {nom} !

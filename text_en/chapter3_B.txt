@@ -1,4 +1,5 @@
-CHOIX3B:Un drone armé vous repère et commence à tirer.
-CHOIX3BA:Trouver rapidement un abri. (Endurance requise : 3)
-CHOIX3BB:Lancer un objet pour distraire le drone. (Force requise : 2)
-CHOIX3BC:Utiliser une batte trouvée au sol pour abattre le drone. (Armement requis : 4)
+--- Chapter 3 ---
+A small drone spots you and starts shooting.
+A. Quickly find a place to hide. (Endurance required: 3)
+B. Throw something to bait the drone. (Strength required: 2)
+C. Grab a baseball bat and smash the drone. (Weapon skill needed: 4)
