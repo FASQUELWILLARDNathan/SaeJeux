@@ -333,6 +333,12 @@ void displayChapter1(Player *player)
                 lecture_rapide("text_en/chapter1.txt", 8, 8);
             }
         }
+        else if (choice == 'I') 
+        {
+
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/console.txt", 3, 3);
+        }
         else
         {
             if (strcmp(player->language, "fr") == 0)
@@ -453,6 +459,12 @@ void displayChapter2(Player *player)
             valid = 1;
             player->chapter2Choice = 'B'; // Enregistrer le choix
         }
+        else if (choice == 'I') 
+        {
+
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/console.txt", 2, 2);
+        }
         else
         {
             if (strcmp(player->language, "fr") == 0)
@@ -507,6 +519,11 @@ void displayChapter3(Player *player)
             {
                 valid = 1;
             }
+            else if (choice == 'I') 
+            {
+                displayPlayerInfo(player);
+            }
+            
             else
             {
                 if (strcmp(player->language, "fr") == 0)
@@ -566,6 +583,11 @@ void displayChapter3_bis(Player *player)
             valid = 1;
             player->chapter3bisChoice = 'A'; // Enregistrer le choix
         }
+        else if (choice == 'I') 
+        {
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/console.txt", 3, 3);
+        }
         else
         {
             if (strcmp(player->language, "fr") == 0)
@@ -616,6 +638,11 @@ void displayChapter4(Player *player)
         {
             valid = 1;
             player->chapter4Choice = 'B'; // Enregistrer le choix du joueur
+        }
+        else if (choice == 'I') 
+        {
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/console.txt", 2, 2);
         }
         else
         {
@@ -670,6 +697,11 @@ void displayChapter5(Player *player)
             valid = 1;
             player->chapter5Choice = 'B'; // Enregistrer le choix
         }
+        else if (choice == 'I') 
+        {
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/console.txt", 2, 2);
+        }
         else
         {
             if (strcmp(player->language, "fr") == 0)
@@ -719,6 +751,11 @@ void displayChapter5_bis(Player *player)
         {
             valid = 1;
             player->chapter5bisChoice = 'B'; // Enregistrer le choix
+        }
+        else if (choice == 'I') 
+        {
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/console.txt", 2, 2);
         }
         else
         {
@@ -802,6 +839,11 @@ void displayChapter6(Player *player)
             {
                 lecture_rapide("text_en/chapter6_A.txt", 6, 6);
             }
+        }
+        else if (choice == 'I') 
+        {
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/chapitre6_B.txt", 2, 2);
         }
         else
         {
