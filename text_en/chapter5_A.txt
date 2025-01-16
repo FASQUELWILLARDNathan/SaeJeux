@@ -1,4 +1,4 @@
 --- Chapter 5 ---
 You see a soldier holding a gun.
-A. Attack the soldier, knock them out, and take their weapon. (Strength required: 4, Weapon skill required: 4)
+A. Attack the soldier, knock them out, and take their weapon. (Strength required: 4)
 B. Avoid the soldier and sneak to the roof.

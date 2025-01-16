@@ -1,7 +1,7 @@
 Choix invalide. Veuillez réessayer. 
 Votre choix (A/B): 
 Votre choix (A/B/C): 
-Vous avez atteint la fin du jeu !
+Vous avez atteint la fin du jeu ! 
 Voulez-vous continuer à jouer ? (O/N) : 
-Merci d'avoir joué !
-Choix invalide ou compétence insuffisante. Veuillez réessayer.
+Merci d'avoir joué ! 
+Choix invalide ou compétence insuffisante. Veuillez réessayer. 
