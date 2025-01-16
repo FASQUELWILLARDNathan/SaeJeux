@@ -13,33 +13,36 @@ typedef struct
     int force;
     int intelligence;
     int endurance;
-    char language[3]; // "fr" ou "en"
-    char chapter1Choice; // Le choix effectué au chapitre 1
-    char chapter2Choice; // Le choix effectué au chapitre 2
-    char chapter3bisChoice; // Le choix effectué au chapitre 3_bis
-    char chapter4Choice; // Le choix effectué au chapitre 4
-    char chapter5Choice; // Le choix effectué au chapitre 5
-    char chapter5bisChoice; // Le choix effectué au chapitre 5_bis
-    char chapter6Choice; // Le choix effectué au chapitre 6
-    char chapter6bisChoice; // Le choix effectué au chapitre 6_bis
+    char language[3]; // "fr" or "en"
+    char chapter1Choice; // Choice done on the chapter 1
+    char chapter2Choice; // Choice done on the chapter 2
+    char chapter3bisChoice; // Choice done on the chapter 3_bis
+    char chapter4Choice; // Choice done on the chapter 4
+    char chapter5Choice; // Choice done on the chapter 5
+    char chapter5bisChoice; // Choice done on the chapter 5_bis
+    char chapter6Choice; // Choice done on the chapter 6
+    char chapter6bisChoice; // Choice done on the chapter 6_bis
 } Player;
 
-// Lire les lignes d'un intervalle donné (de `start_line` à `end_line`) d'un fichier ouvert
+// Read the lines of a given range (from start_line to end_line) from an opened file.
 void lire_intervalle_lignes(FILE *file, int start_line, int end_line)
 {
     char line[MAX_TEXT_LENGTH];
     int current_line = 1;
 
-    // Revenir au début du fichier
+    // Back to the beginning of the file
     rewind(file);
 
+    // Read each line from the file until the end
     while (fgets(line, sizeof(line), file))
     {
+        // Check if the current line number is within the specified range (start_line to end_line)
         if (current_line >= start_line && current_line <= end_line)
         {
             printf("%s", line);
         }
         current_line++;
+        // Stop reading if we have passed the end_line
         if (current_line > end_line)
         {
             break;
@@ -47,6 +50,8 @@ void lire_intervalle_lignes(FILE *file, int start_line, int end_line)
     }
 }
 
+
+// Progression bar
 void afficherBarreProgression(int chapitreActuel, int totalChapitres) {
     int pourcentage = (chapitreActuel * 100) / totalChapitres;
     printf("\nProgression : [");
@@ -61,18 +66,18 @@ void afficherBarreProgression(int chapitreActuel, int totalChapitres) {
     printf("] %d%%\n", pourcentage);
 }
 
-// Fonction de lecture rapide
+// read files between a beginning and a end lines
 void lecture_rapide(const char *path, int debut, int fin)
 {
     FILE *file = fopen(path, "r");
 
-    // Appeler la fonction pour lire l'intervalle de lignes
     lire_intervalle_lignes(file, debut, fin);
 
-    // Fermer le fichier après usage
     fclose(file);
 }
 
+
+// Set language of the game
 void setLanguage(Player *player)
 {
     int valid = 0;
@@ -93,6 +98,8 @@ void setLanguage(Player *player)
     } while (!valid);
 }
 
+
+// We ask the player a name
 void setPlayerName(Player *player)
 {
     if (strcmp(player->language, "fr") == 0)
@@ -131,6 +138,8 @@ void setPlayerName(Player *player)
     }
 }
 
+
+// Skills points for the game
 void assignSkillPoints(Player *player)
 {
     int totalPoints = 10;
@@ -219,6 +228,8 @@ void assignSkillPoints(Player *player)
     }
 }
 
+
+// Print the informations of the player
 void displayPlayerInfo(const Player *player)
 {
     if (strcmp(player->language, "fr") == 0)
@@ -241,10 +252,10 @@ void displayPlayerInfo(const Player *player)
     }
 }
 
+
+// Print introduction
 void displayIntroduction(const Player *player)
 {
-
-    // Sélectionner le fichier en fonction de la langue
     if (strcmp(player->language, "fr") == 0)
     {
         lecture_rapide("text_fr/introduction.txt", 1, 2);
@@ -255,6 +266,7 @@ void displayIntroduction(const Player *player)
     }
 }
 
+// Print chapter 1
 void displayChapter1(Player *player)
 {
     char choice;
@@ -276,7 +288,7 @@ void displayChapter1(Player *player)
     do
     {
         
-        getchar(); // Nettoyer le tampon
+        getchar(); // Erase the memory
         scanf("%c", &choice);
         choice = toupper(choice);
 
@@ -354,6 +366,7 @@ void displayChapter1(Player *player)
     afficherBarreProgression(1, TOTAL_CHAPTERS);
 }
 
+// Print chapter 2
 void displayChapter2(Player *player)
 {
     char choice;
@@ -361,7 +374,7 @@ void displayChapter2(Player *player)
 
     do
     {
-        // Affichage des options selon le choix du chapitre 1
+        // Print according to the choice in chapter 1
         if (strcmp(player->language, "fr") == 0)
         {
             lecture_rapide("text_fr/chapitre2.txt", 1, 2);
@@ -409,32 +422,32 @@ void displayChapter2(Player *player)
             }
         }
 
-        // Lecture du choix de l'utilisateur
-        getchar(); // Nettoyer le tampon
+        // Read the choice
+        getchar();
         scanf("%c", &choice);
         choice = toupper(choice);
 
-        // Traitement des choix
+        // Treatment
         if (player->chapter1Choice == 'A' && choice == 'A' && player->intelligence >= 4)
         {
             valid = 1;
-            player->chapter2Choice = 'A'; // Enregistrer le choix
+            player->chapter2Choice = 'A'; // Save the choice
         }
         else if (player->chapter1Choice == 'A' && choice == 'B')
         {
-            player->chapter2Choice = 'B'; // Enregistrer le choix
+            player->chapter2Choice = 'B'; // Save the choice
 
-            // Réinitialiser le choix du chapitre 1
-            player->chapter1Choice = '\0'; // Réinitialisation du choix du chapitre 1
+            // Reset chapter 1 choice
+            player->chapter1Choice = '\0';
 
-            // Rejouer le chapitre 1 sans quitter le programme
-            valid = 0; // Pour continuer à entrer dans la boucle de `displayChapter1()`
+            // Play again chapter 1
+            valid = 0;
             while (!valid)
             {
-                displayChapter1(player); // Rejouer le chapitre 1
+                displayChapter1(player); // Replay chapter 1
                 if (player->chapter1Choice != '\0')
                 {
-                    valid = 1; // Si un choix valide est fait, sortir de la boucle
+                    valid = 1; // If choice is done we get out of the loop
                 }
             }
             return;
@@ -442,22 +455,22 @@ void displayChapter2(Player *player)
         else if (player->chapter1Choice == 'B' && choice == 'A' && player->intelligence >= 2)
         {
             valid = 1;
-            player->chapter2Choice = 'A'; // Enregistrer le choix
+            player->chapter2Choice = 'A';
         }
         else if (player->chapter1Choice == 'B' && choice == 'B' && player->force >= 3)
         {
             valid = 1;
-            player->chapter2Choice = 'b'; // Enregistrer le choix
+            player->chapter2Choice = 'b';
         }
         else if (player->chapter1Choice == 'C' && choice == 'A' && player->intelligence >= 3)
         {
             valid = 1;
-            player->chapter2Choice = 'A'; // Enregistrer le choix
+            player->chapter2Choice = 'A';
         }
         else if (player->chapter1Choice == 'C' && choice == 'B')
         {
             valid = 1;
-            player->chapter2Choice = 'B'; // Enregistrer le choix
+            player->chapter2Choice = 'B';
         }
         else if (choice == 'I') 
         {
@@ -480,12 +493,14 @@ void displayChapter2(Player *player)
     afficherBarreProgression(2, TOTAL_CHAPTERS);
 }
 
+
+// Display Chapter 3
 void displayChapter3(Player *player)
 {
     char choice;
     int valid = 0;
 
-    // Vérifier que le joueur a fait le bon choix dans le chapitre 1 et chapitre 2 pour accéder au chapitre 3
+    // Verify if the chapter 3 is possible according to the chapter 1 and chapter 2 choices
     if (player->chapter1Choice == 'A' && player->chapter1Choice == 'A')
     {
         if (strcmp(player->language, "fr") == 0)
@@ -503,7 +518,7 @@ void displayChapter3(Player *player)
 
         do
         {
-            getchar(); // Nettoyer le tampon
+            getchar();
             scanf("%c", &choice);
             choice = toupper(choice);
 
@@ -540,6 +555,8 @@ void displayChapter3(Player *player)
     }
 }
 
+
+// Chapter 3 bis 
 void displayChapter3_bis(Player *player)
 {
     char choice;
@@ -547,7 +564,6 @@ void displayChapter3_bis(Player *player)
 
     do
     {
-        // Affichage des options du chapitre 3
         if (strcmp(player->language, "fr") == 0)
         {
             lecture_rapide("text_fr/chapitre3_B.txt", 1, 5);
@@ -560,28 +576,25 @@ void displayChapter3_bis(Player *player)
             printf("\n");
             lecture_rapide("text_en/console.txt", 3, 3);
         }
-
-        // Lecture du choix de l'utilisateur
         
-        getchar(); // Nettoyer le tampon
+        getchar();
         scanf("%c", &choice);
         choice = toupper(choice);
 
-        // Traitement des choix
         if (choice == 'A' && player->endurance >= 3)
         {
             valid = 1;
-            player->chapter3bisChoice = 'A'; // Enregistrer le choix
+            player->chapter3bisChoice = 'A';
         }
         else if (choice == 'B' && player->force >= 2)
         {
             valid = 1;
-            player->chapter3bisChoice = 'A'; // Enregistrer le choix
+            player->chapter3bisChoice = 'A';
         }
         else if (choice == 'C')
         {
             valid = 1;
-            player->chapter3bisChoice = 'A'; // Enregistrer le choix
+            player->chapter3bisChoice = 'A';
         }
         else if (choice == 'I') 
         {
@@ -623,21 +636,19 @@ void displayChapter4(Player *player)
             lecture_rapide("text_en/console.txt", 2, 2);
         }
 
-        // Lecture du choix du joueur
-        getchar(); // Nettoyer le tampon
+        getchar();
         scanf("%c", &choice);
         choice = toupper(choice);
 
-        // Traitement des choix
         if (choice == 'A' && player->force >= 4)
         {
             valid = 1;
-            player->chapter4Choice = 'A'; // Enregistrer le choix du joueur
+            player->chapter4Choice = 'A';
         }
         else if (choice == 'B' && player->intelligence >= 2)
         {
             valid = 1;
-            player->chapter4Choice = 'B'; // Enregistrer le choix du joueur
+            player->chapter4Choice = 'B';
         }
         else if (choice == 'I') 
         {
@@ -665,7 +676,6 @@ void displayChapter5(Player *player)
     char choice;
     int valid = 0;
 
-    // Affichage des options pour le Chapitre 5
     do
     {
         if (strcmp(player->language, "fr") == 0)
@@ -681,21 +691,19 @@ void displayChapter5(Player *player)
             lecture_rapide("text_en/console.txt", 2, 2);
         }
 
-        // Lecture du choix du joueur
-        getchar(); // Nettoyer le tampon
+        getchar();
         scanf("%c", &choice);
         choice = toupper(choice);
 
-        // Traitement des choix
         if (choice == 'A' && player->force >= 4)
         {
             valid = 1;
-            player->chapter5Choice = 'A'; // Enregistrer le choix
+            player->chapter5Choice = 'A';
         }
         else if (choice == 'B')
         {
             valid = 1;
-            player->chapter5Choice = 'B'; // Enregistrer le choix
+            player->chapter5Choice = 'B';
         }
         else if (choice == 'I') 
         {
@@ -722,7 +730,6 @@ void displayChapter5_bis(Player *player)
     char choice;
     int valid = 0;
 
-    // Affichage des options pour le Chapitre 5 bis
     do
     {
         if (strcmp(player->language, "fr") == 0)
@@ -736,21 +743,19 @@ void displayChapter5_bis(Player *player)
             lecture_rapide("text_en/console.txt", 2, 2);
         }
 
-        // Lecture du choix du joueur
-        getchar(); // Nettoyer le tampon
+        getchar();
         scanf("%c", &choice);
         choice = toupper(choice);
 
-        // Traitement des choix
         if (choice == 'A')
         {
             valid = 1;
-            player->chapter5bisChoice = 'A'; // Enregistrer le choix
+            player->chapter5bisChoice = 'A';
         }
         else if (choice == 'B')
         {
             valid = 1;
-            player->chapter5bisChoice = 'B'; // Enregistrer le choix
+            player->chapter5bisChoice = 'B';
         }
         else if (choice == 'I') 
         {
@@ -774,7 +779,6 @@ void displayChapter5_bis(Player *player)
 
 void displayChapter6_bis2(Player *player)
 {
-    // Afficher le texte du chapitre 6_bis2
     if (strcmp(player->language, "fr") == 0)
     {
         lecture_rapide("text_fr/chapitre6_B.txt", 1, 1);
@@ -789,13 +793,11 @@ void displayChapter6_bis2(Player *player)
 }
 
 
-// Fonction pour afficher le Chapitre 6
 void displayChapter6(Player *player)
 {
     char choice;
     int valid = 0;
 
-    // Affichage des options pour le Chapitre 6
     do
     {
         if (strcmp(player->language, "fr") == 0)
@@ -807,17 +809,15 @@ void displayChapter6(Player *player)
             lecture_rapide("text_en/chapter6_A.txt", 1, 4);
         }
 
-        // Lecture du choix du joueur
         lecture_rapide("text_fr/console.txt", 2, 2);
-        getchar(); // Nettoyer le tampon
+        getchar();
         scanf("%c", &choice);
         choice = toupper(choice);
 
-        // Traitement des choix
         if (choice == 'A')
         {
             valid = 1;
-            player->chapter6Choice = 'A'; // Enregistrer le choix
+            player->chapter6Choice = 'A';
             if (strcmp(player->language, "fr") == 0)
             {
                 lecture_rapide("text_fr/chapitre6_A.txt", 5, 5);
@@ -830,7 +830,7 @@ void displayChapter6(Player *player)
         else if (choice == 'B')
         {
             valid = 1;
-            player->chapter6Choice = 'B'; // Enregistrer le choix
+            player->chapter6Choice = 'B';
             if (strcmp(player->language, "fr") == 0)
             {
                 lecture_rapide("text_fr/chapitre6_A.txt", 6, 6);
@@ -862,7 +862,6 @@ void displayChapter6(Player *player)
 
 void displayChapter6_bis(Player *player)
 {
-    // Affichage du texte du chapitre 6_bis
 
     if (strcmp(player->language, "fr") == 0)
     {
@@ -882,216 +881,217 @@ void displayChapter6_bis(Player *player)
 int main()
 {
     Player player = {"", 0, 0, 0, ""};
-    int gameRunning = 1; // Flag pour contrôler la boucle du jeu
-
-    // Choix de la langue
+    int gameRunning = 1; // Continue the game while 1
+    // Language choice
     setLanguage(&player);
 
-    // Saisie du prénom
+    // Name set
     setPlayerName(&player);
 
-    // Attribution des points de compétence
+    // Skills set
     assignSkillPoints(&player);
 
-    // Affichage du profil du joueur
+    // Profil display
     displayPlayerInfo(&player);
 
-    // Afficher l'introduction
+    // Print introduction
     displayIntroduction(&player);
 
-    // Boucle principale du jeu
+    // Loop for the game
     while (gameRunning)
     {
-        // Afficher le chapitre 1
-        displayChapter1(&player);
+        // Display chapter 1
+displayChapter1(&player);
 
-        // Si un choix valide est fait dans le chapitre 1, on passe au chapitre 2
-        if (player.chapter1Choice != '\0')
-        {
-            // Afficher le chapitre 2
-            displayChapter2(&player);
-        }
-
-        // Vérifier si on peut accéder au chapitre 3 principal
-        if (player.chapter1Choice == 'A' && player.chapter2Choice == 'A')
-        {
-            // Afficher le chapitre 3 principal
-            displayChapter3(&player);
-            // Passer au chapitre 4
-            displayChapter4(&player);
-        }
-        // Vérifier si on peut accéder au chapitre 3 alternatif
-        else if ((player.chapter1Choice == 'B' || player.chapter1Choice == 'C') &&
-                 (player.chapter2Choice == 'A' || player.chapter2Choice == 'B'))
-        {
-            // Afficher le chapitre 3 alternatif
-            displayChapter3_bis(&player);
-            displayChapter4(&player);
-        }
-
-        // Vérifier si on peut accéder au Chapitre 5_A
-        if (player.chapter4Choice == 'A')
-        {
-            // Afficher le chapitre 5_A
-            displayChapter5(&player);
-        }
-
-        // Vérifier si on peut accéder au Chapitre 5_B
-        if (player.chapter4Choice == 'B')
-        {
-            // Afficher le chapitre 5_B
-            displayChapter5_bis(&player);
-        }
-
-        // Vérifier si on peut accéder au Chapitre 5_bis (pour le choix B au chapitre 5)
-        if (player.chapter4Choice == 'A' && player.chapter5Choice == 'B')
-        {
-            // Afficher le chapitre 5_bis
-            displayChapter5_bis(&player);
-        }
-
-        // Vérifier si on peut accéder au Chapitre 6_bis2 après Chapitre 5_bis (cas spécifiques)
-        if (player.chapter4Choice == 'A' && player.chapter5Choice == 'B' && player.chapter5bisChoice == 'A')
-        {
-            displayChapter6_bis2(&player);
-            if (strcmp(player.language, "fr") == 0)
-            {
-                lecture_rapide("text_fr/console.txt", 4, 4);
-            }
-            else
-            {
-                lecture_rapide("text_en/console.txt", 4, 4);
-            }
-            break;
-        }
-
-        if (player.chapter4Choice == 'A' && player.chapter5Choice == 'B' && player.chapter5bisChoice == 'B')
-        {
-            displayChapter6_bis(&player);
-            if (strcmp(player.language, "fr") == 0)
-            {
-                lecture_rapide("text_fr/console.txt", 4, 4);
-            }
-            else
-            {
-                lecture_rapide("text_en/console.txt", 4, 4);
-            }
-            break;
-        }
-
-        if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'A')
-        {
-            displayChapter6_bis2(&player);
-            if (strcmp(player.language, "fr") == 0)
-            {
-                lecture_rapide("text_fr/console.txt", 4, 4);
-            }
-            else
-            {
-                lecture_rapide("text_en/console.txt", 4, 4);
-            }
-            break;
-        }
-
-        if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'B')
-        {
-            displayChapter6_bis(&player);
-            if (strcmp(player.language, "fr") == 0)
-            {
-                lecture_rapide("text_fr/console.txt", 4, 4);
-            }
-            else
-            {
-                lecture_rapide("text_en/console.txt", 4, 4);
-            }
-            break;
-        }
-
-        // Vérifier si on peut accéder au Chapitre 6 principal
-        if (player.chapter4Choice == 'A' && player.chapter5Choice == 'A')
-        {
-            displayChapter6(&player);
-            if (strcmp(player.language, "fr") == 0)
-            {
-                lecture_rapide("text_fr/console.txt", 4, 4);
-            }
-            else
-            {
-                lecture_rapide("text_en/console.txt", 4, 4);
-            }
-            break;
-        }
-
-        // Vérifier si on peut accéder au Chapitre 6_bis
-        if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'B')
-        {
-            displayChapter6_bis(&player);
-            if (strcmp(player.language, "fr") == 0)
-            {
-                lecture_rapide("text_fr/console.txt", 5, 5);
-            }
-            else
-            {
-                lecture_rapide("text_en/console.txt", 5, 5);
-            }
-            break;
-        }
-
-        // Vérifier si on peut accéder au Chapitre 6_bis2 (autre chemin)
-        if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'A')
-        {
-            displayChapter6_bis2(&player);
-            if (strcmp(player.language, "fr") == 0)
-            {
-                lecture_rapide("text_fr/console.txt", 4, 4);
-            }
-            else
-            {
-                lecture_rapide("text_en/console.txt", 4, 4);
-            }
-            break;
-        }
-
-        // Logique pour continuer ou quitter le jeu
-        char continueGame;
-        if (strcmp(player.language, "fr") == 0)
-        {
-            lecture_rapide("text_fr/console.txt", 5, 5);
-        }
-        else
-        {
-            lecture_rapide("text_en/console.txt", 5, 5);
-        }
-
-        getchar(); // Nettoyer le tampon
-        scanf("%c", &continueGame);
-        continueGame = toupper(continueGame);
-
-        if (continueGame == 'N')
-        {
-            gameRunning = 0; // Quitter la boucle et terminer le jeu
-        }
-        else
-        {
-            // Réinitialiser les choix pour recommencer une nouvelle partie
-            player.chapter1Choice = '\0';
-            player.chapter2Choice = '\0';
-            player.chapter4Choice = '\0';
-            player.chapter5Choice = '\0';
-            player.chapter5bisChoice = '\0';
-        }
-    }
-
-    if (strcmp(player.language, "fr") == 0)
-        {
-            lecture_rapide("text_fr/console.txt", 6, 6);
-        }
-        else
-        {
-            lecture_rapide("text_en/console.txt", 6, 6);
-        }
-    return 0;
+// If a valid choice is made in chapter 1, proceed to chapter 2
+if (player.chapter1Choice != '\0')
+{
+    // Display chapter 2
+    displayChapter2(&player);
 }
+
+// Check if we can access the main chapter 3
+if (player.chapter1Choice == 'A' && player.chapter2Choice == 'A')
+{
+    // Display the main chapter 3
+    displayChapter3(&player);
+    // Proceed to chapter 4
+    displayChapter4(&player);
+}
+// Check if we can access the alternative chapter 3
+else if ((player.chapter1Choice == 'B' || player.chapter1Choice == 'C') &&
+         (player.chapter2Choice == 'A' || player.chapter2Choice == 'B'))
+{
+    // Display the alternative chapter 3
+    displayChapter3_bis(&player);
+    displayChapter4(&player);
+}
+
+// Check if we can access chapter 5_A
+if (player.chapter4Choice == 'A')
+{
+    // Display chapter 5_A
+    displayChapter5(&player);
+}
+
+// Check if we can access chapter 5_B
+if (player.chapter4Choice == 'B')
+{
+    // Display chapter 5_B
+    displayChapter5_bis(&player);
+}
+
+// Check if we can access chapter 5_bis (for choice B in chapter 5)
+if (player.chapter4Choice == 'A' && player.chapter5Choice == 'B')
+{
+    // Display chapter 5_bis
+    displayChapter5_bis(&player);
+}
+
+// Check if we can access chapter 6_bis2 after chapter 5_bis (specific cases)
+if (player.chapter4Choice == 'A' && player.chapter5Choice == 'B' && player.chapter5bisChoice == 'A')
+{
+    displayChapter6_bis2(&player);
+    if (strcmp(player.language, "fr") == 0)
+    {
+        lecture_rapide("text_fr/console.txt", 4, 4);
+    }
+    else
+    {
+        lecture_rapide("text_en/console.txt", 4, 4);
+    }
+    break;
+}
+
+if (player.chapter4Choice == 'A' && player.chapter5Choice == 'B' && player.chapter5bisChoice == 'B')
+{
+    displayChapter6_bis(&player);
+    if (strcmp(player.language, "fr") == 0)
+    {
+        lecture_rapide("text_fr/console.txt", 4, 4);
+    }
+    else
+    {
+        lecture_rapide("text_en/console.txt", 4, 4);
+    }
+    break;
+}
+
+if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'A')
+{
+    displayChapter6_bis2(&player);
+    if (strcmp(player.language, "fr") == 0)
+    {
+        lecture_rapide("text_fr/console.txt", 4, 4);
+    }
+    else
+    {
+        lecture_rapide("text_en/console.txt", 4, 4);
+    }
+    break;
+}
+
+if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'B')
+{
+    displayChapter6_bis(&player);
+    if (strcmp(player.language, "fr") == 0)
+    {
+        lecture_rapide("text_fr/console.txt", 4, 4);
+    }
+    else
+    {
+        lecture_rapide("text_en/console.txt", 4, 4);
+    }
+    break;
+}
+
+// Check if we can access the main chapter 6
+if (player.chapter4Choice == 'A' && player.chapter5Choice == 'A')
+{
+    displayChapter6(&player);
+    if (strcmp(player.language, "fr") == 0)
+    {
+        lecture_rapide("text_fr/console.txt", 4, 4);
+    }
+    else
+    {
+        lecture_rapide("text_en/console.txt", 4, 4);
+    }
+    break;
+}
+
+// Check if we can access chapter 6_bis
+if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'B')
+{
+    displayChapter6_bis(&player);
+    if (strcmp(player.language, "fr") == 0)
+    {
+        lecture_rapide("text_fr/console.txt", 5, 5);
+    }
+    else
+    {
+        lecture_rapide("text_en/console.txt", 5, 5);
+    }
+    break;
+}
+
+// Check if we can access chapter 6_bis2 (another path)
+if (player.chapter4Choice == 'B' && player.chapter5bisChoice == 'A')
+{
+    displayChapter6_bis2(&player);
+    if (strcmp(player.language, "fr") == 0)
+    {
+        lecture_rapide("text_fr/console.txt", 4, 4);
+    }
+    else
+    {
+        lecture_rapide("text_en/console.txt", 4, 4);
+    }
+    break;
+}
+
+// Logic to continue or quit the game
+char continueGame;
+if (strcmp(player.language, "fr") == 0)
+{
+    lecture_rapide("text_fr/console.txt", 5, 5);
+}
+else
+{
+    lecture_rapide("text_en/console.txt", 5, 5);
+}
+
+getchar(); // Clean the input buffer
+scanf("%c", &continueGame);
+continueGame = toupper(continueGame);
+
+if (continueGame == 'N')
+{
+    gameRunning = 0; // Exit the loop and end the game
+}
+else
+{
+    // Reset choices to start a new game
+    player.chapter1Choice = '\0';
+    player.chapter2Choice = '\0';
+    player.chapter4Choice = '\0';
+    player.chapter5Choice = '\0';
+    player.chapter5bisChoice = '\0';
+}
+
+}
+
+if (strcmp(player.language, "fr") == 0)
+{
+    lecture_rapide("text_fr/console.txt", 6, 6);
+}
+else
+{
+    lecture_rapide("text_en/console.txt", 6, 6);
+}
+return 0;
+}
+
 
 
 
