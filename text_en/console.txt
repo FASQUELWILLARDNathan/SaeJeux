@@ -1,7 +1,7 @@
-Invalid choice. Please try again.
-Your choice (A/B):
-Your choice (A/B/C):
-You reach the end of the game !
+Invalid choice. Please try again. 
+Your choice (A/B): 
+Your choice (A/B/C): 
+You reach the end of the game ! 
 Do you want to continue playing? (Y/N) : 
-Thanks for playing !
-Invalid choice or insufficient skill. Please try again.
+Thanks for playing ! 
+Invalid choice or insufficient skill. Please try again. 
