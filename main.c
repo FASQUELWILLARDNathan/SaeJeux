@@ -5,6 +5,7 @@
 #define MAX_NAME 50
 #define MAX_INTRO_LENGTH 256
 #define MAX_TEXT_LENGTH 1024
+#define TOTAL_CHAPTERS 6
 
 typedef struct
 {
@@ -43,6 +44,20 @@ void lire_intervalle_lignes(FILE *file, int start_line, int end_line)
             break;
         }
     }
+}
+
+void afficherBarreProgression(int chapitreActuel, int totalChapitres) {
+    int pourcentage = (chapitreActuel * 100) / totalChapitres;
+    printf("\nProgression : [");
+
+    for (int i = 0; i < 50; i++) {
+        if (i < (pourcentage / 2)) {
+            printf("=");
+        } else {
+            printf(" ");
+        }
+    }
+    printf("] %d%%\n", pourcentage);
 }
 
 // Fonction de lecture rapide
@@ -333,6 +348,7 @@ void displayChapter1(Player *player)
             }
         }
     } while (!valid);
+    afficherBarreProgression(1, TOTAL_CHAPTERS);
 }
 
 void displayChapter2(Player *player)
@@ -441,6 +457,7 @@ void displayChapter2(Player *player)
             }
         }
     } while (!valid);
+    afficherBarreProgression(2, TOTAL_CHAPTERS);
 }
 
 void displayChapter3(Player *player)
@@ -491,6 +508,7 @@ void displayChapter3(Player *player)
                 }
             }
         } while (!valid);
+        afficherBarreProgression(3, TOTAL_CHAPTERS);
     }
 }
 
@@ -546,6 +564,7 @@ void displayChapter3_bis(Player *player)
             }
         }
     } while (!valid);
+    afficherBarreProgression(3, TOTAL_CHAPTERS);
 }
 
 void displayChapter4(Player *player)
@@ -593,6 +612,7 @@ void displayChapter4(Player *player)
             }
         }
     } while (!valid);
+    afficherBarreProgression(4, TOTAL_CHAPTERS);
 }
 
 
@@ -642,6 +662,7 @@ void displayChapter5(Player *player)
             }
         }
     } while (!valid);
+    afficherBarreProgression(5, TOTAL_CHAPTERS);
 }
 
 void displayChapter5_bis(Player *player)
@@ -690,6 +711,7 @@ void displayChapter5_bis(Player *player)
             }
         }
     } while (!valid);
+    afficherBarreProgression(5, TOTAL_CHAPTERS);
 }
 
 void displayChapter6_bis2(Player *player)
@@ -705,6 +727,7 @@ void displayChapter6_bis2(Player *player)
         lecture_rapide("text_en/chapter6_B.txt", 1, 1);
         lecture_rapide("text_en/chapter6_B.txt", 2, 2);
     }
+    afficherBarreProgression(6, TOTAL_CHAPTERS);
 }
 
 
@@ -771,6 +794,7 @@ void displayChapter6(Player *player)
             }
         }
     } while (!valid);
+    afficherBarreProgression(6, TOTAL_CHAPTERS);
 }
 
 void displayChapter6_bis(Player *player)
@@ -802,6 +826,7 @@ void displayChapter6_bis(Player *player)
             printf("\nYou cannot access this chapter because the required choices in Chapter 4 and Chapter 5 have not been made.\n");
         }
     }
+    afficherBarreProgression(6, TOTAL_CHAPTERS);
 }
 
 
