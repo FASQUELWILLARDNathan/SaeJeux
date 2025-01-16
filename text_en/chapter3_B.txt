@@ -2,4 +2,4 @@
 A small drone spots you and starts shooting.
 A. Quickly find a place to hide. (Endurance required: 3)
 B. Throw something to bait the drone. (Strength required: 2)
-C. Grab a baseball bat and smash the drone. (Weapon skill needed: 4)
+C. Grab a baseball bat and smash the drone.

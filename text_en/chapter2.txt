@@ -1,6 +1,6 @@
 --- Chapter 2 ---
 After deciding, what do you do next?
-A. Use the underground path you found earlier. (Intelligence required: 4)
+A. Enter in the underground of the building. (Intelligence required: 4)
 B. Go back and leave through the main entrance to reach the streets.
 
 A. Go down to find a safe way to the building with the helicopters. (Intelligence required: 2)

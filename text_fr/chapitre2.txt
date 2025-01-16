@@ -1,6 +1,6 @@
 --- Chapitre 2 ---
 Après votre décision, que souhaitez-vous faire par la suite ?
-A:Suivre le passage des sous-sols découvert plus tôt. (Intelligence requise : 4)
+A:Entrer dans les sous-terrains du bâtiment. (Intelligence requise : 4)
 B:Remonter et sortir par l’entrée principale pour rejoindre les rues.
 
 A:Descendre pour trouver un chemin sûr vers le bâtiment avec les hélicoptères. (Intelligence requise : 2)
