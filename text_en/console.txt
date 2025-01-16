@@ -5,3 +5,5 @@ You reach the end of the game !
 Do you want to continue playing? (Y/N) : 
 Thanks for playing ! 
 Invalid choice or insufficient skill. Please try again. 
+How many points do you want to assign to Strength? 
+How many points do you want to assign to Intelligence? 

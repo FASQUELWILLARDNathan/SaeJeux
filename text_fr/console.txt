@@ -5,3 +5,7 @@ Vous avez atteint la fin du jeu !
 Voulez-vous continuer à jouer ? (O/N) : 
 Merci d'avoir joué ! 
 Choix invalide ou compétence insuffisante. Veuillez réessayer. 
+Choisissez une langue (fr/en) : 
+Langue non supportée. Veuillez réessayer. 
+Combien de points voulez-vous attribuer à Force ? 
+Combien de points voulez-vous attribuer à Intelligence ? 

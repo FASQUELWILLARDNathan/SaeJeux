@@ -79,7 +79,7 @@ void setLanguage(Player *player)
 
     do
     {
-        printf("Choisissez une langue (fr/en) : ");
+        lecture_rapide("text_fr/console.txt", 8, 8);
         scanf("%2s", player->language);
 
         if (strcmp(player->language, "fr") == 0 || strcmp(player->language, "en") == 0)
@@ -88,7 +88,7 @@ void setLanguage(Player *player)
         }
         else
         {
-            printf("Langue non supportée. Veuillez réessayer.\n");
+            lecture_rapide("text_fr/console.txt", 9, 9);
         }
     } while (!valid);
 }
@@ -150,11 +150,11 @@ void assignSkillPoints(Player *player)
     {
         if (strcmp(player->language, "fr") == 0)
         {
-            printf("Combien de points voulez-vous attribuer à Force ? ");
+            lecture_rapide("text_fr/console.txt", 10, 10);
         }
         else
         {
-            printf("How many points do you want to assign to Strength? ");
+            lecture_rapide("text_en/console.txt", 8, 8);
         }
         scanf("%d", &points);
         if (points < 0 || points > totalPoints)
@@ -181,11 +181,11 @@ void assignSkillPoints(Player *player)
     {
         if (strcmp(player->language, "fr") == 0)
         {
-            printf("Combien de points voulez-vous attribuer à Intelligence ? ");
+            lecture_rapide("text_fr/console.txt", 11, 11);
         }
         else
         {
-            printf("How many points do you want to assign to Intelligence? ");
+            lecture_rapide("text_en/console.txt", 9, 9);
         }
         scanf("%d", &points);
         if (points < 0 || points > totalPoints)
@@ -876,6 +876,8 @@ void displayChapter6_bis(Player *player)
     afficherBarreProgression(6, TOTAL_CHAPTERS);
     }
 }
+
+
 
 int main()
 {
