@@ -13,7 +13,7 @@ typedef struct
     int force;
     int intelligence;
     int endurance;
-    char language[3]; // "fr" or "en"
+    char language[3]; // fr or en
     char chapter1Choice; // Choice done on the chapter 1
     char chapter2Choice; // Choice done on the chapter 2
     char chapter3bisChoice; // Choice done on the chapter 3_bis
@@ -104,37 +104,20 @@ void setPlayerName(Player *player)
 {
     if (strcmp(player->language, "fr") == 0)
     {
-        FILE *file = fopen("text_fr/lancement.txt", "r");
-
-        int start = 1, end = 1;
-        lire_intervalle_lignes(file, start, end);
-
-        getchar(); // Nettoie le tampon pour éviter les problèmes avec fgets
+        lecture_rapide("text_fr/lancement.txt", 1, 1);
         scanf("%s", player->name);
 
-        start = 2;
-        end = 2;
-        lire_intervalle_lignes(file, start, end);
+        lecture_rapide("text_fr/lancement.txt", 2, 2);
         printf(" %s", player->name);
 
-        fclose(file);
     }
     else
     {
-        FILE *file = fopen("text_en/launch.txt", "r");
-
-        int start = 1, end = 1;
-        lire_intervalle_lignes(file, start, end);
-
-        getchar(); // Nettoie le tampon pour éviter les problèmes avec fgets
+        lecture_rapide("text_en/launch.txt", 1, 1);
         scanf("%s", player->name);
 
-        start = 2;
-        end = 2;
-        lire_intervalle_lignes(file, start, end);
+        lecture_rapide("text_en/launch.txt", 2, 2);
         printf(" %s", player->name);
-
-        fclose(file);
     }
 }
 
@@ -735,11 +718,13 @@ void displayChapter5_bis(Player *player)
         if (strcmp(player->language, "fr") == 0)
         {
             lecture_rapide("text_fr/chapitre5_B.txt", 1, 4);
+            printf("\n");
             lecture_rapide("text_fr/console.txt", 2, 2);
         }
         else
         {
             lecture_rapide("text_en/chapter5_B.txt", 1, 4);
+            printf("\n");
             lecture_rapide("text_en/console.txt", 2, 2);
         }
 
@@ -782,11 +767,13 @@ void displayChapter6_bis2(Player *player)
     if (strcmp(player->language, "fr") == 0)
     {
         lecture_rapide("text_fr/chapitre6_B.txt", 1, 1);
+        printf("\n");
         lecture_rapide("text_fr/chapitre6_B.txt", 2, 2);
     }
     else
     {
         lecture_rapide("text_en/chapter6_B.txt", 1, 1);
+        printf("\n");
         lecture_rapide("text_en/chapter6_B.txt", 2, 2);
     }
     afficherBarreProgression(6, TOTAL_CHAPTERS);
@@ -866,11 +853,13 @@ void displayChapter6_bis(Player *player)
     if (strcmp(player->language, "fr") == 0)
     {
         lecture_rapide("text_fr/chapitre6_B.txt", 1, 1);
+        printf("\n");
         lecture_rapide("text_fr/chapitre6_B.txt", 3, 3);
     }
     else
     {
         lecture_rapide("text_en/chapter6_B.txt", 1, 1);
+        printf("\n");
         lecture_rapide("text_en/chapter6_B.txt", 3, 3);
     afficherBarreProgression(6, TOTAL_CHAPTERS);
     }
