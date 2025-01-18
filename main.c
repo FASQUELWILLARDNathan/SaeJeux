@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <unistd.h>
 
 #define MAX_NAME 50
 #define MAX_INTRO_LENGTH 256
@@ -24,6 +25,15 @@ typedef struct
     char chapter6bisChoice; // Choice done on the chapter 6_bis
 } Player;
 
+void smoothPrint(const char *message, int delay) {
+    while (*message) {
+        printf("%c", *message); // afficher un caractère
+        fflush(stdout);        // forcer l'affichage immédiat
+        usleep(delay * 1000);  // délai en millisecondes
+        message++;
+    }
+} 
+
 // Read the lines of a given range (from start_line to end_line) from an opened file.
 void lire_intervalle_lignes(FILE *file, int start_line, int end_line)
 {
@@ -39,7 +49,11 @@ void lire_intervalle_lignes(FILE *file, int start_line, int end_line)
         // Check if the current line number is within the specified range (start_line to end_line)
         if (current_line >= start_line && current_line <= end_line)
         {
-            printf("%s", line);
+
+            smoothPrint(line, 15);
+            if (line[strlen(line) - 1] != '\n') {
+                printf("\n"); // garantir une nouvelle ligne si nécessaire
+            }
         }
         current_line++;
         // Stop reading if we have passed the end_line
