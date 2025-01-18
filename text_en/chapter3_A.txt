@@ -1,5 +1,5 @@
 --- Chapter 3 ---
 You hear strange noises behind you. Something is following you.
 A. Run away as fast as you can. (Endurance required: 5)
-B. Set a trap with your rope and knife. (Weapon skill required: 5)
+B. Set a trap with your rope and knife.
 C. Hide in a corner and watch carefully. (Intelligence required: 4)
