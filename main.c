@@ -27,9 +27,9 @@ typedef struct
 
 void smoothPrint(const char *message, int delay) {
     while (*message) {
-        printf("%c", *message); // afficher un caractère
-        fflush(stdout);        // forcer l'affichage immédiat
-        usleep(delay * 1000);  // délai en millisecondes
+        printf("%c", *message); // display a character
+        fflush(stdout);        // force immediate output
+        usleep(delay * 1000);  // delay in milliseconds
         message++;
     }
 } 
@@ -50,9 +50,9 @@ void lire_intervalle_lignes(FILE *file, int start_line, int end_line)
         if (current_line >= start_line && current_line <= end_line)
         {
 
-            smoothPrint(line, 15);
+            smoothPrint(line, 10);
             if (line[strlen(line) - 1] != '\n') {
-                printf("\n"); // garantir une nouvelle ligne si nécessaire
+                 // ensure a new line if necessary
             }
         }
         current_line++;
@@ -122,7 +122,7 @@ void setPlayerName(Player *player)
         scanf("%s", player->name);
 
         lecture_rapide("text_fr/lancement.txt", 2, 2);
-        printf(" %s", player->name);
+        printf(" \033[1;34m%s\033[0m\n", player->name);
 
     }
     else
@@ -131,7 +131,7 @@ void setPlayerName(Player *player)
         scanf("%s", player->name);
 
         lecture_rapide("text_en/launch.txt", 2, 2);
-        printf(" %s", player->name);
+        printf(" \033[1;34m%s\033[0m\n", player->name);
     }
 }
 
@@ -232,19 +232,19 @@ void displayPlayerInfo(const Player *player)
     if (strcmp(player->language, "fr") == 0)
     {
         printf("\n--- Profil du joueur ---\n");
-        printf("Prénom      : %s\n", player->name);
-        printf("Force       : %d\n", player->force);
-        printf("Intelligence: %d\n", player->intelligence);
-        printf("Endurance   : %d\n", player->endurance);
+        printf("Prénom      : \033[1;34m%s\033[0m\n", player->name);
+        printf("Force       : \033[1;31m%d\033[0m\n", player->force);
+        printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+        printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
         printf("------------------------\n");
     }
     else
     {
         printf("\n--- Player Profile ---\n");
-        printf("Name        : %s\n", player->name);
-        printf("Strength    : %d\n", player->force);
-        printf("Intelligence: %d\n", player->intelligence);
-        printf("Endurance   : %d\n", player->endurance);
+        printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+        printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+        printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+        printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
         printf("------------------------\n");
     }
 }
@@ -344,9 +344,22 @@ void displayChapter1(Player *player)
         }
         else if (choice == 'I') 
         {
-
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
+            {
             displayPlayerInfo(player);
             lecture_rapide("text_fr/console.txt", 3, 3);
+            }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 3, 3);
+            }
         }
         else
         {
@@ -471,9 +484,22 @@ void displayChapter2(Player *player)
         }
         else if (choice == 'I') 
         {
-
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
+            {
             displayPlayerInfo(player);
             lecture_rapide("text_fr/console.txt", 2, 2);
+            }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 2, 2);
+            }
         }
         else
         {
@@ -532,9 +558,24 @@ void displayChapter3(Player *player)
                 valid = 1;
             }
             else if (choice == 'I') 
+        {
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
             {
-                displayPlayerInfo(player);
+            displayPlayerInfo(player);
+            lecture_rapide("text_fr/console.txt", 3, 3);
             }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 3, 3);
+            }
+        }
             
             else
             {
@@ -595,8 +636,22 @@ void displayChapter3_bis(Player *player)
         }
         else if (choice == 'I') 
         {
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
+            {
             displayPlayerInfo(player);
             lecture_rapide("text_fr/console.txt", 3, 3);
+            }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 3, 3);
+            }
         }
         else
         {
@@ -649,8 +704,22 @@ void displayChapter4(Player *player)
         }
         else if (choice == 'I') 
         {
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
+            {
             displayPlayerInfo(player);
             lecture_rapide("text_fr/console.txt", 2, 2);
+            }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 2, 2);
+            }
         }
         else
         {
@@ -704,8 +773,22 @@ void displayChapter5(Player *player)
         }
         else if (choice == 'I') 
         {
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
+            {
             displayPlayerInfo(player);
             lecture_rapide("text_fr/console.txt", 2, 2);
+            }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 2, 2);
+            }
         }
         else
         {
@@ -758,8 +841,22 @@ void displayChapter5_bis(Player *player)
         }
         else if (choice == 'I') 
         {
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
+            {
             displayPlayerInfo(player);
             lecture_rapide("text_fr/console.txt", 2, 2);
+            }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 2, 2);
+            }
         }
         else
         {
@@ -843,8 +940,22 @@ void displayChapter6(Player *player)
         }
         else if (choice == 'I') 
         {
+            valid = 1;
+            if (strcmp(player->language, "fr") == 0)
+            {
             displayPlayerInfo(player);
-            lecture_rapide("text_fr/chapitre6_B.txt", 2, 2);
+            lecture_rapide("text_fr/console.txt", 2, 2);
+            }
+            else
+            {
+            printf("\n--- Player Profile ---\n");
+            printf("Name        : \033[1;34m%s\033[0m\n", player->name);
+            printf("Strength    : \033[1;31m%d\033[0m\n", player->force);
+            printf("Intelligence: \033[1;32m%d\033[0m\n", player->intelligence);
+            printf("Endurance   : \033[1;33m%d\033[0m\n", player->endurance);
+            printf("------------------------\n");
+            lecture_rapide("text_en/console.txt", 2, 2);
+            }
         }
         else
         {

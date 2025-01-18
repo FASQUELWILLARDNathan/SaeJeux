@@ -1,6 +1,6 @@
 Invalid choice. Please try again. 
-Your choice (A/B): 
-Your choice (A/B/C): 
+Your choice (A/B, Press 'I' to view your profile.): 
+Your choice (A/B/C, Press 'I' to view your profile.): 
 You reach the end of the game ! 
 Do you want to continue playing? (Y/N) : 
 Thanks for playing ! 
