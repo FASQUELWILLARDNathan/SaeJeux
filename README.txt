@@ -1,6 +1,6 @@
 FASQUEL WILLARD Nathan | DRIEUX Luc
 
-Jeu Textuel de Survie
+Apocalypse Survival
 
 Description :
 Ce projet est un jeu textuel avec des choix multiples se déroulant dans un monde post-apocalyptique. Les joueurs doivent prendre des décisions cruciales qui influencent le déroulement de l’histoire. Chaque choix peut mener à des situations différentes et affecter la progression vers l'objectif principal : atteindre un bâtiment sécurisé avec des hélicoptères pour l'évacuation.
@@ -14,10 +14,13 @@ Caractéristiques :
 Défis réaliser :
 1. Ajouter des points de compétences
 2. Faire plusieurs fins alternatives en fonction des choix du joueur
+3. Affichage fluide
+4. Pris en compte des MAJUSCULES ou MINUSCULES
+5. Affichage en couleurs
 
 Fichiers inclus :
-- **textes_fr.txt** : Fichier contenant l'histoire en français.
-- **textes_en.txt** : Fichier contenant l'histoire en anglais.
+- **text_fr.txt** : Fichier contenant l'histoire en français.
+- **text_en.txt** : Fichier contenant l'histoire en anglais.
 - **README.txt** : Ce fichier d’information.
 - **main.c** : Fichier principal
 
@@ -34,4 +37,5 @@ Pré-requis techniques :
 
 Comment lancer le jeu :
 1. Compiler le fichier source principal en C (fichier non inclus ici) avec la commande suivante : GCC main.c -> .\a.exe
+2. Lancer le main.exe (mais attention vous n'aurez pas accès au texte de fin)
 
